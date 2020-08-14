@@ -1,26 +1,39 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.css";
+import BurgerContainer from "./components/Burger/BurgerContainer";
+
+const INGREDIENTS_PRICE: IIngredients = {
+    salad: 5,
+    bacon: 12,
+    cheese: 7,
+    meat: 15,
+};
+
+const INGREDIENTS_MAX: IIngredients = {
+    salad: 5,
+    bacon: 5,
+    cheese: 5,
+    meat: 5,
+};
+
+const onSubmitHandler = (data, callback) => {
+    console.log(data);
+    callback(true, (message) => {
+        alert(message);
+    });
+};
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+        <BurgerContainer
+            config={{
+                // ingredientPrice: INGREDIENTS_PRICE,
+                ingredientMaxCount: INGREDIENTS_MAX,
+                // initPrice: 10,
+            }}
+            onSubmit={onSubmitHandler}
+        ></BurgerContainer>
+    );
 }
 
 export default App;
